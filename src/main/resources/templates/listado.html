@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado de estudiantes</title>
+<link href="bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Listado de Estudiantes</h1>
+        <br>
+        <br>
+        <section>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-dark">
+                    	<th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <th:block th:each="estudiante, row: ${estudiantes}">
+                    <tr>
+                    	<th th:text="${estudiante.codigo}"></th>
+                        <th th:text="${estudiante.nombre}"></th>
+                        <th th:text="${estudiante.apellido}"></th>
+                        <th th:text="${estudiante.edad}"></th>
+                        <th th:text="${estudiante.estadoDelegate}"></th>
+                    </tr>
+                </th:block>
+            </table>
+        </section>
+        <br> <br>
+	        <form th:action="@{/borrarEstudiante}" method="post">
+		        <div class="form-group">
+			        <label class="col-form-label">Codigo a buscar: </label>
+			        <input type="number" class="form-control" name="codigo" placeholder="Ingrese el codigo">
+			        <br>
+                    <input type="submit" class="btn btn-primary" value="Borrar estudiante"/>
+				</div>
+			</form>
+        <br> <br>
+            <form th:action="@{/edit}" method="post">
+                <div class="form-group">
+                    <label class="col-form-label">Codigo a buscar: </label>
+                    <input type="number" class="form-control" name="codigo" placeholder="Ingrese el codigo">
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="Editar estudiante"/>
+                    <div class="btn-group" role="group" aria-label="Third group">
+                        <a  href= "/inicio " class="btn btn-warning">Agregar estudiante</a>
+                    </div>
+                </div>
+            </form>
+
+		</div>
+</body>
+</html>
